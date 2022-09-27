@@ -10,6 +10,7 @@
 
     <input id="bill-input" type="number" placeholder="bill">
     <input id="tip-input" type="number" placeholder="tip %">
+    <input id="party-input" type="number" placeholder="# in party">
     <div id="display"></div>
 
   <script>
@@ -20,14 +21,18 @@
     // Here are some DOM element references
     const billInput = document.querySelector('#bill-input')
     const tipInput = document.querySelector('#tip-input')
+    const partyInput = document.querySelector('#party-input')
     const display = document.querySelector('#display')
 
     // Define some functions to do some work
 
-    function calculateTip(bill, tipPercent) {
-      const tip = bill * tipPercent / 100
-      return tip
-    }
+    // function calculateTip(bill, tipPercent) {
+    //   const tip = bill * tipPercent / 100
+    //   return tip
+    // }
+
+    const calculateTip = (bill, tipPercent) => { const tip = bill * tipPercent/100 
+    return tip }
 
     // This function updates and displays the tip amount
     // I added a couple new ideas here. 
@@ -35,18 +40,29 @@
     // The best way to convert a string to a number is parseFloat(someValue)
     // or parseInt(someValue). 
 
-    function update(e) {
-      const billValue = parseFloat(billInput.value)
-      const tipValue = parseFloat(tipInput.value)
-      const tip = calculateTip(billValue, tipValue)
-      const total = billValue + tip
-      display.innerHTML = `Tip: ${tip} Total: ${tip}`
-    }
+    // function update(e) {
+    //   const billValue = parseFloat(billInput.value)
+    //   const tipValue = parseFloat(tipInput.value)
+    //   const tip = calculateTip(billValue, tipValue)
+    //   const total = billValue + tip
+    //   display.innerHTML = `Tip: ${tip} Total: ${tip}`
+    // }
+
+    const update = (e) => { 
+      const billValue = parseFloat(billInput.value);
+      const tipValue = parseFloat(tipInput.value);
+      const partyValue = parseInt(partyInput.value);
+      const tip = calculateTip(billValue, tipValue);
+      const total = billValue + tip;
+      const share = total / partyValue;
+      display.innerHTML = `Bill: ${billValue} Tip: ${tip} Total: ${total} Each member of the party should pay: ${share.toFixed(2)}`
+    };
 
     // Add some event listeners
 
     billInput.addEventListener('input', update)
     tipInput.addEventListener('input', update)
+    partyInput.addEventListener('input',update)
 
     // TODO: After updating the functions above to arrow 
     // functions test your work. 
@@ -65,3 +81,4 @@
   </script>
 </body>
 </html>
+
