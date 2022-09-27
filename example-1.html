@@ -91,13 +91,19 @@
       console.log('Hello World')
     }
 
+    const helloWorld = () => { console.log('Hello World')};
+
     function foo(bar) {
       console.log(`foo ${bar}`)
     }
 
+    const foo = (bar) => {console.log(`${bar}`)};
+
     function calculateArea(w, l) {
       return w * l
     }
+
+    const calculateArea = (w,l) => {w * l}
 
     helloWorld()
     foo('cats own the internet!')
